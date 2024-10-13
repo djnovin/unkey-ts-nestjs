@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate {
     const headers = request.headers;
     const authorization = headers.authorization;
 
-    if (!authorization || !authorization.startsWith('Bearer ')) {
+    if (!authorization?.startsWith('Bearer ')) {
       return null;
     }
 
