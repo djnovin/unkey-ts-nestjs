@@ -1,16 +1,9 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { Unkey, verifyKey } from '@unkey/api';
+import { verifyKey } from '@unkey/api';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(@Inject('UNKEY_INSTANCE') private readonly unkey: Unkey) {}
-
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
