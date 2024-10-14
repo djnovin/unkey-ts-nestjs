@@ -11,36 +11,56 @@ export class AuthGuard implements CanActivate {
   }
 
   private async validateRequest(context: ExecutionContext): Promise<boolean> {
-    const token = await this.getBearerToken(context);
+    try {
+      const token = await this.getBearerToken(context);
 
-    if (!token) return false;
+      if (!token) return false;
 
-    return await this.validateBearerToken(token);
+      return this.validateBearerToken(token);
+    } catch (err) {
+      return false;
+    }
   }
 
   private async getBearerToken(
     context: ExecutionContext,
   ): Promise<string | null> {
     const request = context.switchToHttp().getRequest();
-    const headers = request.headers;
-    const authorization = headers.authorization;
+
+    if (!request) return null;
+
+    const { authorization } = request.headers;
+
+    if (!authorization) {
+      return null;
+    }
 
     if (!authorization?.startsWith('Bearer ')) {
       return null;
     }
 
-    const token = authorization.split(' ')[1];
+    const parts = authorization.split(' ');
+
+    if (parts.length !== 2 || !parts[1]) {
+      return null;
+    }
+
+    const token = parts[1].trim();
+
+    if (!token) {
+      return null;
+    }
 
     return token;
   }
 
   private async validateBearerToken(token: string): Promise<boolean> {
-    const validationResponse = await verifyKey(token);
+    try {
+      const validationResponse = await verifyKey(token);
 
-    if (!validationResponse) return false;
-
-    if (validationResponse.error) return false;
-
-    return true;
+      return validationResponse.result.valid;
+    } catch (err) {
+      return false;
+    }
   }
 }
