@@ -56,9 +56,9 @@ export class AuthGuard implements CanActivate {
 
   private async validateBearerToken(token: string): Promise<boolean> {
     try {
-      const validationResponse = await verifyKey(token);
+      const { result } = await verifyKey(token);
 
-      return validationResponse.result.valid;
+      return result.valid;
     } catch (err) {
       return false;
     }
