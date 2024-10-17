@@ -1,6 +1,26 @@
-# Protect your TypeScript + NestJS API with Unkey
 
-## Quick Start
+<h1 align="center">Unkey Node.js Example</h1>
+<p align="center">
+  <img alt="GitHub Actions Status" src="https://github.com/sondr3/astro-compressor/workflows/pipeline/badge.svg" />
+</p>
+
+<p align="center">
+  This is an example of how to use the Unkey API with NestJS.
+</p>
+
+<details>
+<summary>Table of Contents</summary>
+<br />
+
+## Table of Contents
+
+- [Quickstart](#quickstart)
+  - [Create a root key](#create-a-root-key)
+  - [Create your API](#create-your-api)
+  - [Create your first API key](#create-your-first-api-key)
+  - [Set up the example](#set-up-the-example)
+
+## Quickstart
 
 ### Create a root key
 
@@ -56,7 +76,7 @@ pnpm install
 ```bash
 
 pnpm run start
-  
+
 ```
 
 6. Test the public route as a guest:
