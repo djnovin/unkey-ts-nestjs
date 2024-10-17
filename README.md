@@ -19,6 +19,8 @@
   - [Create your API](#create-your-api)
   - [Create your first API key](#create-your-first-api-key)
   - [Set up the example](#set-up-the-example)
+- [License](#license)
+  </details>
 
 ## Quickstart
 
@@ -94,3 +96,7 @@ curl http://localhost:3000/api/v1/public
 curl http://localhost:3000/api/v1/protected -H "Authorization: Bearer <YOUR_API_KEY>"
 
 ```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
